@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Сглыпа-бот — Telegram бот с генерацией контента через Claude API
+Telegram бот с генерацией контента через Claude API
 Запуск: python bot.py
 """
 
