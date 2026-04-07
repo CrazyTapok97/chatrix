@@ -1,0 +1,16 @@
+[Unit]
+Description=Chatrix Telegram Bot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/DATA/Bot_chatrix
+Environment=BOT_TOKEN=YOUR_BOT_TOKEN_HERE
+Environment=GEMINI_API_KEY=YOUR_GEMINI_KEY_HERE
+ExecStart=/DATA/Bot_chatrix/venv/bin/python /DATA/Bot_chatrix/bot.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

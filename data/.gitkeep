@@ -1,0 +1,3 @@
+# Keep this directory structure
+# This file ensures data directory is tracked by git
+# but contents are ignored via .gitignore
