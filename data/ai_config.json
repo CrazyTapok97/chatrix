@@ -1,0 +1,58 @@
+{
+  "primary_model": "qwen/qwen3.6-27b",
+  "fallback_model": "openai/gpt-oss-120b",
+  "final_model": "",
+  "primary_provider": "groq",
+  "fallback_provider": "groq",
+  "final_provider": "openrouter",
+  "custom_models": [
+    {
+      "id": "nousresearch/hermes-3-llama-3.1-405b:free",
+      "name": "Nous: Hermes 3 405B",
+      "provider": "OpenRouter",
+      "tag": "roleplay",
+      "color": "purple"
+    },
+    {
+      "id": "qwen/qwen3-32b",
+      "name": "Qwen",
+      "provider": "Groq",
+      "tag": "test",
+      "color": "purple"
+    },
+    {
+      "id": "meta-llama/llama-3.3-70b-instruct:free",
+      "name": "meta-llama-3.3-70b",
+      "provider": "OpenRouter",
+      "tag": "кастом",
+      "color": "purple"
+    },
+    {
+      "id": "gemini-3.1-flash-lite,gemma-4-31b,gemma-4-26b",
+      "name": "Gemini 2026 Optimized Chain",
+      "provider": "Google",
+      "tag": "экстренный",
+      "color": "red"
+    }
+  ],
+  "extra_model": "",
+  "extra_provider": "openrouter",
+  "assistant_model": "llama-3.1-8b-instant",
+  "fallback_chain": [
+    {
+      "id": "openai/gpt-oss-120b",
+      "enabled": true
+    }
+  ],
+  "assistant_provider": "groq",
+  "primary_model_changed_at": 1782321475.1018655,
+  "model_health_auto": false,
+  "fallback2_model": "",
+  "fallback2_provider": "openrouter",
+  "fallback3_model": "",
+  "fallback3_provider": "groq",
+  "fallback4_model": "",
+  "fallback4_provider": "openrouter",
+  "extra2_model": "",
+  "extra3_model": ""
+}

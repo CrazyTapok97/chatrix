@@ -1,0 +1,14 @@
+venv/
+__pycache__/
+.codegraph/
+.aider.tags.cache.v4/
+.continue/
+*.pyc
+.env
+logs/
+data/chat_history.json
+data/heartbeat.json
+data/backups/
+data/links.json
+chatrix_backup.tar.gz
+*.log

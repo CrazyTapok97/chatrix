@@ -1,0 +1,34 @@
+{
+  "enabled": true,
+  "chats": [
+    "-1001870569668"
+  ],
+  "timezone": 5,
+  "send_graph": true,
+  "schedules": {
+    "daily": {
+      "enabled": false,
+      "hour": 0,
+      "minute": 0
+    },
+    "weekly": {
+      "enabled": true,
+      "day": 0,
+      "hour": 0,
+      "minute": 0
+    },
+    "monthly": {
+      "enabled": true,
+      "day": 1,
+      "hour": 0,
+      "minute": 0
+    },
+    "yearly": {
+      "enabled": true,
+      "month": 1,
+      "day": 1,
+      "hour": 0,
+      "minute": 0
+    }
+  }
+}

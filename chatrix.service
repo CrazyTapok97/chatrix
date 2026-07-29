@@ -1,0 +1,16 @@
+[Unit]
+Description=Chatrix Telegram Bot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/DATA/Bot_chatrix
+EnvironmentFile=-/DATA/Bot_chatrix/.env
+ExecStart=/DATA/Bot_chatrix/venv/bin/python /DATA/Bot_chatrix/chatrix.py
+Restart=always
+RestartSec=5
+RuntimeMaxSec=86400
+
+[Install]
+WantedBy=multi-user.target
