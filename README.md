@@ -1,15 +1,9 @@
 # Chatrix — Telegram бот
 
-Telegram бот с генерацией контента через Google Gemini AI. Работает на Raspberry Pi 4.
+Telegram-бот с AI-генерацией контента и интерактивными функциями.
 
 ## Установка
 
-### 1. Скопируй файлы на малинку
-```bash
-scp -r chatrix/ root@<IP_МАЛИНКИ>:/DATA/Bot_chatrix
-```
-
-### 2. Создай виртуальное окружение и установи зависимости
 ```bash
 cd /DATA/Bot_chatrix
 python3 -m venv venv
@@ -17,76 +11,82 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 3. Настрой токены в config.py
-```python
-BOT_TOKEN = "1234567890:ABC..."   # от @BotFather
-GEMINI_API_KEY = "AIza..."        # от aistudio.google.com
-```
+Настрой токены в `.env` (см. `.env.example`).
 
-### 4. Проверь запуск вручную
-```bash
-source venv/bin/activate
-python chatrix.py
-```
-
-### 5. Автозапуск через systemd
+**Автозапуск:**
 ```bash
 sudo cp chatrix.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable chatrix
 sudo systemctl start chatrix
-sudo systemctl status chatrix
-```
-
-Логи:
-```bash
 journalctl -u chatrix -f
 ```
 
----
-
 ## Команды
 
+### Основные
 | Команда | Описание |
 |---|---|
-| `S g` | Панель генерации |
-| `S g <начало>` | Текст с заданным началом |
-| `S g <1-250>` | Текст заданной длины |
-| `S g l` | Длинный текст |
-| `S g w` | Случайное слово |
-| `S g w <1-50>` | Слово заданной длины |
-| `S g p` | Опрос или викторина |
-| `S g m` | Случайный мем |
-| `S g d` | Демотиватор (реплай на фото = с картинкой) |
-| `S g a` | Анекдот |
-| `S g a <начало>` | Анекдот с заданным началом |
-| `S c` | Настройки чата (только для админов) |
-| `S h` | Помощь |
+| `/draw [описание]` | Нарисовать картинку |
+| `/redraw [уточнение]` | Перерисовать /draw с улучшением |
+| `/ask [вопрос]` | Прямой вопрос AI |
+| `/search [запрос]` | Поиск в интернете + сводка |
+| `/wiki [тема]` | Википедия + сводка |
+| `/agent [задача]` | Многошаговый AI-ответ |
+| `/vision, анализ` | Анализ фото или текста |
+| `/tts [текст]` | Озвучить текст |
 
-⏳ Кулдаун: 20 сек для всех, 5 сек для администраторов.
-Без кулдауна: `S g w` (генерация слова).
+### Настройки
+| Команда | Описание |
+|---|---|
+| `/set style [описание]` | Стиль общения бота |
+| `/set group [N]` | Частота ответов (по умолч. 10) |
+| `/set chance [0-1]` | Шанс стикеров |
+| `/set mode [default/mystyle]` | Режим стиля |
+| `/status` | Статус бота и чата |
 
----
+### Развлечения
+| `/rate`, `/roast`, `/fortune`, `/ship`, `/advice`, `/who` |
+|---|
 
-## Структура файлов
+### Утилиты
+| `/plan [цель]` | Пошаговый план |
+|---|---|
+| `/task [текст]` | Добавить задачу |
+| `/tasks` | Список задач |
+
+### Админ
+| `/models` | Сменить модель AI |
+|---|---|
+| `/backup` | Создать бэкап |
+
+## Структура
 
 ```
-/DATA/Bot_chatrix/
-├── chatrix.py
-├── config.py
+chatrix/
+├── chatrix.py          # Точка входа
+├── config.py           # Конфигурация
 ├── requirements.txt
-├── chatrix.service
-├── venv/
-├── data/
-│   └── chat_settings.json
+├── chatrix.service     # Systemd-юнит
+├── .env.example
 ├── handlers/
-│   ├── generate.py
-│   ├── settings.py
-│   └── misc.py
-└── utils/
-    ├── ai.py
-    ├── access.py
-    ├── cooldown.py
-    ├── demotivator.py
-    └── settings_store.py
+│   ├── misc.py         # AI-ответы, авто-декодинг
+│   ├── native_features.py  # /draw, /redraw, /ask, /vision, /tts и др.
+│   ├── generate.py     # S-команды (мемы, демотиваторы)
+│   ├── settings.py     # Настройки чата
+│   ├── inline.py       # Инлайн-режим
+│   ├── mafia.py        # Игра мафия
+│   └── business.py     # Business-подключения
+├── utils/
+│   ├── ai.py           # Gen AI, промпты, BOT_KNOWLEDGE
+│   ├── ai_config.py    # Очистка ответов, цепочки моделей
+│   ├── native_features.py  # Генерация изображений, поиск
+│   ├── history.py      # Управление историей
+│   ├── intents.py      # Определение намерений (web_search)
+│   ├── chat_style.py   # Стили общения (/set)
+│   └── ...             # reactions, demotivator, meme_gen и др.
+└── data/
+    ├── system_prompts.json
+    ├── chat_settings.json
+    └── ...
 ```
