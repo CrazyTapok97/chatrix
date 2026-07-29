@@ -6,9 +6,19 @@ __pycache__/
 *.pyc
 .env
 logs/
-data/chat_history.json
-data/heartbeat.json
-data/backups/
-data/links.json
 chatrix_backup.tar.gz
 *.log
+
+# Внутренняя документация AI-агентов
+AGENTS.md
+BOT_INFO.md
+USER_GUIDE.md
+GEMINI.md
+
+# Runtime data — не в репозиторий
+data/*.json
+!data/system_prompts.json
+!data/ai_config.json
+!data/sticker_packs.json
+data/*.db
+data/backups/

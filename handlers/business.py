@@ -16,7 +16,7 @@ from utils.ai import gen_business_reply
 import json, random
 from utils import business_state
 from utils.history import add_message, add_photo, add_media
-from config import DISABLE_AUTO_REPLY
+from config import ADMIN_IDS, DISABLE_AUTO_REPLY
 from handlers.native_features import dispatch_business_command
 
 logger = logging.getLogger(__name__)
@@ -69,8 +69,8 @@ async def handle_business_message(message: Message):
     conn_id = message.business_connection_id
     owner_id = business_state.get_owner_id(conn_id)
     
-    KNOWN_OWNERS = [892133524]
-    CHATRIX_BOT_ID = 8727078930
+    KNOWN_OWNERS = list(ADMIN_IDS) if ADMIN_IDS else []
+    CHATRIX_BOT_ID = int(os.getenv("BOT_TOKEN", "0:").split(":")[0])
     
     is_owner = False
     if message.from_user.id in KNOWN_OWNERS:

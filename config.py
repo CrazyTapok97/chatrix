@@ -13,7 +13,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN", "YOUR_BOT_TOKEN_HERE")
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", os.getenv("GEMINI_KEY", ""))
-ADMIN_IDS = {int(v) for v in os.getenv("ADMIN_IDS", "892133524").split(",") if v.strip()}
+ADMIN_IDS = {int(v) for v in os.getenv("ADMIN_IDS", "").split(",") if v.strip()}
 
 # ─── Модели через OpenRouter (перебираются по очереди если 429) ───────────────
 GEMINI_MODEL = "meta-llama/llama-3.2-3b-instruct:free"
@@ -43,7 +43,7 @@ GROQ_MODELS = [
 DISABLE_AUTO_REPLY = os.getenv("DISABLE_AUTO_REPLY", "false").lower() in {"1", "true", "yes", "on"}
 COOLDOWN_DEFAULT = 0
 COOLDOWN_ADMIN = 0
-MEME_CACHE_CHAT_ID = 892133524
+MEME_CACHE_CHAT_ID = int(os.getenv("MEME_CACHE_CHAT_ID", "0"))
 NO_COOLDOWN_CMDS = {"word", "word_len"}
 
 # ─── Автоматический контент ──────────────────────────────────────────────────
